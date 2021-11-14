@@ -9,13 +9,7 @@ blogsRouter.get('/', (request, response) => {
  
 
 blogsRouter.post('/', (request, response, next) => {
-    const body = request.body
-
-    const blog = new Blog({
-        content: body.content,
-        important: body.important || false,
-        date: new Date()
-    })
+    const blog = new Blog(request.body)
 
     blog.save()
     .then(savedBlog => {
